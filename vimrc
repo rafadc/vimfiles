@@ -37,3 +37,17 @@ colo gruvbox
 let g:gruvbox_contrast_dark = 'hard'
 
 set number
+
+" Tabs to spaces
+set softtabstop=4
+set tabstop=2
+set shiftwidth=8
+
+set expandtab
+
+" Indentation
+set autoindent
+
+" Clipboard
+set clipboard=unnamed
+
