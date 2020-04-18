@@ -8,6 +8,7 @@ Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-sensible'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'vifm/vifm.vim'
 
 " Ruby
 Plug 'ngmy/vim-rubocop'
