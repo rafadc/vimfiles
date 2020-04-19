@@ -22,16 +22,15 @@ set mouse=a
 let g:netrw_banner=0        " disable annoying banner
 
 " Keymaps
-inoremap jj <ESC>
-nnoremap jj <ESC>
-nnoremap <c-t> :FZF .<cr>
+noremap <c-t> :FZF .<cr>
 
 nnoremap <C-j> :bprev<CR>                                                                            
 nnoremap <C-k> :bnext<CR>
 
-function ReloadConfig()
+function s:reloadConfig()
 	source ~/.vimrc
 endfunction
+command! ReloadConfig call <SID>reloadConfig()
 
 " Visuals
 set bg=dark
@@ -52,4 +51,7 @@ set autoindent
 
 " Clipboard
 set clipboard=unnamed
+
+" Personal notes file
+source personal_notes.vim
 
