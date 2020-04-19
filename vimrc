@@ -53,5 +53,5 @@ set autoindent
 set clipboard=unnamed
 
 " Personal notes file
-source personal_notes.vim
+source ~/.vim/personal_notes.vim
 
