@@ -1,4 +1,4 @@
-function! s:PersonalNotes()
+function! s:PersonalNotesToggle()
         let l:projectFolder = system("git rev-parse --show-toplevel")[:-2]
         if v:shell_error > 1
           echomsg "Not in a git project"
@@ -27,5 +27,4 @@ function! GetPersonalNotesBuffers()
     return l:result
 endfunction
 
-command! PersonalNotes call <SID>PersonalNotes()
-map <F7> :PersonalNotes<CR>
+command! PersonalNotesToggle call <SID>PersonalNotesToggle()

@@ -54,4 +54,5 @@ set clipboard=unnamed
 
 " Personal notes file
 source ~/.vim/personal_notes.vim
+map <F7> :PersonalNotesToggle<CR>
 
