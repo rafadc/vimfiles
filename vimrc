@@ -10,6 +10,9 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'vifm/vifm.vim'
 
+" Programming language support
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 " Ruby
 Plug 'ngmy/vim-rubocop'
 
