@@ -9,6 +9,7 @@ Plug 'tpope/vim-sensible'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'vifm/vifm.vim'
+Plug 'dense-analysis/ale'
 
 " Programming language support
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -27,7 +28,7 @@ let g:netrw_banner=0        " disable annoying banner
 " Keymaps
 noremap <c-t> :FZF .<cr>
 
-nnoremap <C-j> :bprev<CR>                                                                            
+nnoremap <C-j> :bprev<CR>
 nnoremap <C-k> :bnext<CR>
 
 function s:reloadConfig()
@@ -42,6 +43,8 @@ let g:gruvbox_contrast_dark = 'hard'
 
 set number
 
+set scrolloff=20 " Keep 20 lines always visible
+
 " Tabs to spaces
 set softtabstop=4
 set tabstop=2
@@ -52,6 +55,9 @@ set expandtab
 " Indentation
 set autoindent
 
+" Trim triling whitespace
+autocmd BufWritePre * %s/\s\+$//e
+
 " Clipboard
 set clipboard=unnamed
 
@@ -59,3 +65,5 @@ set clipboard=unnamed
 source ~/.vim/personal_notes.vim
 map <F7> :PersonalNotesToggle<CR>
 
+" Applications
+map <F6> :!tig<CR>
