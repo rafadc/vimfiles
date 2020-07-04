@@ -10,11 +10,16 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'vifm/vifm.vim'
 
-" Programming language support
+" === Programming language support ===
+
+" Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Ruby
 Plug 'ngmy/vim-rubocop'
+
+" Elixir
+Plug 'elixir-editors/vim-elixir'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -46,6 +51,7 @@ set number
 set softtabstop=4
 set tabstop=2
 set shiftwidth=8
+autocmd BufWritePre * :%s/\s+$//e " Remove trailing whitespace
 
 set expandtab
 
@@ -53,7 +59,7 @@ set expandtab
 set autoindent
 
 " Clipboard
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " Personal notes file
 source ~/.vim/personal_notes.vim
