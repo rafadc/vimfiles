@@ -1,6 +1,6 @@
 # Vimfiles
 
-My humble vimfiles. Install with
+My humble vimfiles. Using nvim. Install with
 
 ``` shell
 git clone git@github.com:rafadc/vimfiles.git .vim

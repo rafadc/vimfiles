@@ -11,6 +11,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'vifm/vifm.vim'
 Plug 'dense-analysis/ale'
 Plug 'vimwiki/vimwiki'
+Plug 'kevinhwang91/rnvimr'
 
 " === Programming language support ===
 
@@ -23,6 +24,12 @@ Plug 'ngmy/vim-rubocop'
 " Elixir
 Plug 'elixir-editors/vim-elixir'
 
+" Rust
+Plug 'rust-lang/rust.vim'
+
+" GraphQL
+Plug 'jparise/vim-graphql'
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -31,16 +38,30 @@ set mouse=a
 " Netrw
 let g:netrw_banner=0        " disable annoying banner
 
+" Rnvimr
+let g:rnvimr_enable_ex = 1  " Ranger will replace netrw
+
+let g:rnvimr_presets = [{'width': 0.950, 'height': 0.950}]
+
+highlight link RnvimrNormal CursorLine
+
+nnoremap <silent> <C-Space> :RnvimrToggle<CR>
+
 " Keymaps
-noremap <c-t> :FZF .<cr>
+noremap <C-p> :FZF .<cr>
 
 nnoremap <C-j> :bprev<CR>
 nnoremap <C-k> :bnext<CR>
 
 function s:reloadConfig()
-	source ~/.vimrc
+	source ~/.config/nvim/init.vim
 endfunction
 command! ReloadConfig call <SID>reloadConfig()
+
+function s:settings()
+	e ~/.config/nvim/init.vim
+endfunction
+command! Settings call <SID>settings()
 
 " Visuals
 set bg=dark
@@ -70,7 +91,12 @@ set clipboard=unnamedplus
 
 " Personal notes file
 source ~/.vim/personal_notes.vim
-map <F7> :PersonalNotesToggle<CR>
+map <silent> <F7> :PersonalNotesToggle<CR>
 
 " Applications
-map <F6> :!tig<CR>
+map <silent> <F6> :!tig<CR>
+
+
+" Programming languages
+" " Rust
+let g:rustfmt_autosave = 1
