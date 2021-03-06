@@ -13,12 +13,14 @@ Plug 'morhetz/gruvbox'
 
 " Declare the list of plugins.
 Plug 'tpope/vim-sensible'
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'vifm/vifm.vim'
 Plug 'dense-analysis/ale'
 Plug 'vimwiki/vimwiki'
 Plug 'kevinhwang91/rnvimr'
+
+" Telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 " === Programming language support ===
 
@@ -40,6 +42,8 @@ Plug 'jparise/vim-graphql'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
+let mapleader = "\<Space>"
+
 set mouse=a
 
 " Netrw
@@ -55,7 +59,6 @@ highlight link RnvimrNormal CursorLine
 nnoremap <silent> <C-Space> :RnvimrToggle<CR>
 
 " Keymaps
-noremap <C-p> :FZF .<cr>
 
 nnoremap <C-j> :bprev<CR>
 nnoremap <C-k> :bnext<CR>
@@ -69,6 +72,12 @@ function s:settings()
 	e ~/.config/nvim/init.vim
 endfunction
 command! Settings call <SID>settings()
+
+" Telescope
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " Visuals
 set bg=dark
@@ -100,10 +109,5 @@ set clipboard=unnamedplus
 source ~/.vim/personal_notes.vim
 map <silent> <F7> :PersonalNotesToggle<CR>
 
-" Applications
-map <silent> <F6> :!tig<CR>
-
-
-" Programming languages
-" " Rust
+" Rust
 let g:rustfmt_autosave = 1
