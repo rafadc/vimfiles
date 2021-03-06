@@ -22,12 +22,17 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
+" LSP
+Plug 'neovim/nvim-lsp'
+Plug 'neovim/nvim-lspconfig'
+
 " === Programming language support ===
 
 " Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Ruby
+Plug 'vim-ruby/vim-ruby'
 Plug 'ngmy/vim-rubocop'
 
 " Elixir
@@ -74,10 +79,11 @@ endfunction
 command! Settings call <SID>settings()
 
 " Telescope
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>ff <cmd>Telescope git_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fs <cmd>Telescope lsp_workspace_symbols<cr>
 
 " Visuals
 set bg=dark
@@ -108,6 +114,9 @@ set clipboard=unnamedplus
 " Personal notes file
 source ~/.vim/personal_notes.vim
 map <silent> <F7> :PersonalNotesToggle<CR>
+
+" Ruby
+lua require'lspconfig'.solargraph.setup{}
 
 " Rust
 let g:rustfmt_autosave = 1

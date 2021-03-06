@@ -15,3 +15,14 @@ The in your vim run
 
 And you are ready to go!
 
+# Extra config
+
+## Ruby
+
+For the LSP we use solargraph. Install with
+
+```
+gem install --user-install solargraph
+```
+```
+
