@@ -75,11 +75,11 @@ endfunction
 command! Settings call <SID>settings()
 
 " Telescope
-nnoremap <leader>ff <cmd>Telescope git_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>fs <cmd>Telescope lsp_workspace_symbols<cr>
+nnoremap <silent>ff <cmd>Telescope git_files<cr>
+nnoremap <silent>fg <cmd>Telescope live_grep<cr>
+nnoremap <silent>fb <cmd>Telescope buffers<cr>
+nnoremap <silent>fh <cmd>Telescope help_tags<cr>
+nnoremap <silent>fs <cmd>Telescope lsp_workspace_symbols<cr>
 
 " Visuals
 set bg=dark
@@ -112,8 +112,13 @@ source ~/.vim/personal_notes.vim
 map <silent> <F7> :PersonalNotesToggle<CR>
 
 " CoC
-
 let g:coc_global_extensions = ['coc-json', 'coc-html', 'coc-solargraph', 'coc-rls']
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
 
 " Rust
 let g:rustfmt_autosave = 1
