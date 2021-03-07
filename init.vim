@@ -22,14 +22,10 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
-" LSP
-Plug 'neovim/nvim-lsp'
-Plug 'neovim/nvim-lspconfig'
+" CoC
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " === Programming language support ===
-
-" Go
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Ruby
 Plug 'vim-ruby/vim-ruby'
@@ -115,8 +111,9 @@ set clipboard=unnamedplus
 source ~/.vim/personal_notes.vim
 map <silent> <F7> :PersonalNotesToggle<CR>
 
-" Ruby
-lua require'lspconfig'.solargraph.setup{}
+" CoC
+
+let g:coc_global_extensions = ['coc-json', 'coc-html', 'coc-solargraph', 'coc-rls']
 
 " Rust
 let g:rustfmt_autosave = 1
