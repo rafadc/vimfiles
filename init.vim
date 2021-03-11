@@ -15,20 +15,24 @@ Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-sensible'
 Plug 'dense-analysis/ale'
 Plug 'vimwiki/vimwiki'
-Plug 'kevinhwang91/rnvimr'
 
 " Telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
-" CoC
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" LSP
+Plug 'neovim/nvim-lsp'
+Plug 'neovim/nvim-lspconfig'
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+" Treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
 " === Programming language support ===
 
 " Ruby
-Plug 'vim-ruby/vim-ruby'
 Plug 'ngmy/vim-rubocop'
 
 " Elixir
@@ -47,32 +51,13 @@ let mapleader = "\<Space>"
 
 set mouse=a
 
-" Netrw
-let g:netrw_banner=0        " disable annoying banner
-
-" Rnvimr
-let g:rnvimr_enable_ex = 1  " Ranger will replace netrw
-
-let g:rnvimr_presets = [{'width': 0.950, 'height': 0.950}]
-
-highlight link RnvimrNormal CursorLine
-
-nnoremap <silent> <C-Space> :RnvimrToggle<CR>
+let g:nvim_config_root = stdpath('config')
+execute 'luafile ' . g:nvim_config_root . '/lua/netrw.lua'
 
 " Keymaps
 
 nnoremap <C-j> :bprev<CR>
 nnoremap <C-k> :bnext<CR>
-
-function s:reloadConfig()
-	source ~/.config/nvim/init.vim
-endfunction
-command! ReloadConfig call <SID>reloadConfig()
-
-function s:settings()
-	e ~/.config/nvim/init.vim
-endfunction
-command! Settings call <SID>settings()
 
 " Telescope
 nnoremap <silent>ff <cmd>Telescope git_files<cr>
@@ -94,7 +79,6 @@ set scrolloff=20 " Keep 20 lines always visible
 set softtabstop=4
 set tabstop=2
 set shiftwidth=8
-autocmd BufWritePre * :%s/\s+$//e " Remove trailing whitespace
 
 set expandtab
 
@@ -111,14 +95,16 @@ set clipboard=unnamedplus
 source ~/.vim/personal_notes.vim
 map <silent> <F7> :PersonalNotesToggle<CR>
 
-" CoC
-let g:coc_global_extensions = ['coc-json', 'coc-html', 'coc-solargraph', 'coc-rls']
+" Programming language specifics
+let g:deoplete#enable_at_startup = 1
 
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nnoremap gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap gD <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap gr <cmd>lua vim.lsp.buf.references()<CR>
 
+" Ruby
+lua require'lspconfig'.solargraph.setup{}
 
 " Rust
 let g:rustfmt_autosave = 1
+lua require'lspconfig'.rls.setup{}
