@@ -14,7 +14,6 @@ Plug 'morhetz/gruvbox'
 " Declare the list of plugins.
 Plug 'tpope/vim-sensible'
 Plug 'dense-analysis/ale'
-Plug 'vimwiki/vimwiki'
 
 " Telescope
 Plug 'nvim-lua/popup.nvim'
