@@ -54,6 +54,8 @@ set mouse=a
 let g:nvim_config_root = stdpath('config')
 execute 'luafile ' . g:nvim_config_root . '/lua/netrw.lua'
 
+execute 'luafile ' . g:nvim_config_root . '/lua/lsp.lua'
+
 " Keymaps
 
 nnoremap <C-j> :bprev<CR>
@@ -65,6 +67,7 @@ nnoremap <silent>fg <cmd>Telescope live_grep<cr>
 nnoremap <silent>fb <cmd>Telescope buffers<cr>
 nnoremap <silent>fh <cmd>Telescope help_tags<cr>
 nnoremap <silent>fs <cmd>Telescope lsp_workspace_symbols<cr>
+autocmd FileType TelescopePrompt call deoplete#custom#buffer_option('auto_complete', v:false)
 
 " Visuals
 set bg=dark
@@ -102,9 +105,5 @@ nnoremap gd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap gD <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap gr <cmd>lua vim.lsp.buf.references()<CR>
 
-" Ruby
-lua require'lspconfig'.solargraph.setup{}
-
 " Rust
 let g:rustfmt_autosave = 1
-lua require'lspconfig'.rls.setup{}
