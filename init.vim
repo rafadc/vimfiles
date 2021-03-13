@@ -9,7 +9,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Theme
-Plug 'morhetz/gruvbox'
+Plug 'chriskempson/base16-vim'
 
 " Declare the list of plugins.
 Plug 'tpope/vim-sensible'
@@ -20,14 +20,23 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
+Plug 'jremmen/vim-ripgrep'
+
 " LSP
 Plug 'neovim/nvim-lsp'
 Plug 'neovim/nvim-lspconfig'
+Plug 'onsails/lspkind-nvim'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+
+" Status line
+Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+
+" Icons
+Plug 'kyazdani42/nvim-web-devicons'
 
 " === Programming language support ===
 
@@ -54,15 +63,16 @@ let g:nvim_config_root = stdpath('config')
 execute 'luafile ' . g:nvim_config_root . '/lua/netrw.lua'
 
 execute 'luafile ' . g:nvim_config_root . '/lua/lsp.lua'
+execute 'luafile ' . g:nvim_config_root . '/lua/galaxyline_config.lua'
+
+let g:rg_command = 'rg --vimgrep -S'
 
 " Keymaps
-
 nnoremap <C-j> :bprev<CR>
 nnoremap <C-k> :bnext<CR>
 
 " Telescope
 nnoremap <silent>ff <cmd>Telescope git_files<cr>
-nnoremap <silent>fg <cmd>Telescope live_grep<cr>
 nnoremap <silent>fb <cmd>Telescope buffers<cr>
 nnoremap <silent>fh <cmd>Telescope help_tags<cr>
 nnoremap <silent>fs <cmd>Telescope lsp_workspace_symbols<cr>
@@ -70,7 +80,8 @@ autocmd FileType TelescopePrompt call deoplete#custom#buffer_option('auto_comple
 
 " Visuals
 set bg=dark
-colo gruvbox
+colorscheme base16-onedark
+set termguicolors
 let g:gruvbox_contrast_dark = 'hard'
 
 set number
