@@ -1,5 +1,8 @@
 local lspconfig = require'lspconfig'
 
-lspconfig.solargraph.setup{}
+lspconfig.solargraph.setup{} -- Ruby
+lspconfig.rls.setup{} -- Rust
+lspconfig.pyright.setup{} -- Python
 
-lspconfig.rls.setup{}
+require('lspkind').init()
+
