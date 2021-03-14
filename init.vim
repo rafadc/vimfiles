@@ -15,12 +15,8 @@ Plug 'chriskempson/base16-vim'
 Plug 'tpope/vim-sensible'
 Plug 'dense-analysis/ale'
 
-" Telescope
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-
-Plug 'jremmen/vim-ripgrep'
+Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-rooter'
 
 " LSP
 Plug 'neovim/nvim-lsp'
@@ -71,12 +67,35 @@ let g:rg_command = 'rg --vimgrep -S'
 nnoremap <C-j> :bprev<CR>
 nnoremap <C-k> :bnext<CR>
 
-" Telescope
-nnoremap <silent>ff <cmd>Telescope git_files<cr>
-nnoremap <silent>fb <cmd>Telescope buffers<cr>
-nnoremap <silent>fh <cmd>Telescope help_tags<cr>
-nnoremap <silent>fs <cmd>Telescope lsp_workspace_symbols<cr>
-autocmd FileType TelescopePrompt call deoplete#custom#buffer_option('auto_complete', v:false)
+" FZF
+nnoremap <silent>ff :GFiles<cr>
+nnoremap <silent>fg :Rg<cr>
+
+let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
+let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
+let $FZF_DEFAULT_COMMAND="rg --files --hidden"
+
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+" Get text in files with Rg
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
 
 " Visuals
 set bg=dark
