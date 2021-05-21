@@ -16,7 +16,6 @@ Plug 'tpope/vim-sensible'
 Plug 'dense-analysis/ale'
 
 Plug 'junegunn/fzf.vim'
-Plug 'airblade/vim-rooter'
 
 " LSP
 Plug 'neovim/nvim-lsp'
@@ -34,6 +33,9 @@ Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 " Icons
 Plug 'kyazdani42/nvim-web-devicons'
 
+" Auto jump to root f project
+Plug 'airblade/vim-rooter'
+
 " === Programming language support ===
 
 " Ruby
@@ -44,6 +46,10 @@ Plug 'elixir-editors/vim-elixir'
 
 " Rust
 Plug 'rust-lang/rust.vim'
+
+" Python
+Plug 'PieterjanMontens/vim-pipenv'
+Plug 'jmcantrell/vim-virtualenv'
 
 " GraphQL
 Plug 'jparise/vim-graphql'
@@ -106,6 +112,9 @@ let g:gruvbox_contrast_dark = 'hard'
 set number
 
 set scrolloff=20 " Keep 20 lines always visible
+
+" Abbreviations
+cabbr <expr> %% expand('%:p:h')
 
 " Tabs to spaces
 set softtabstop=4
